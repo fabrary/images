@@ -3,9 +3,9 @@ const path = require("path");
 const glob = require("glob");
 const sharp = require("sharp");
 
-const cardSource = "jpeg/cards";
+const cardSource = "src/cards";
 const cardDestination = "webp/cards";
-const heroSource = "jpeg/heroes";
+const heroSource = "src/heroes";
 const heroDestination = "webp/heroes";
 
 (async () => {
@@ -33,7 +33,7 @@ const heroDestination = "webp/heroes";
         const imageOutput = `${destination}/${imageName}.webp`;
 
         sharp(imageBuffer)
-          .webp({ quality: 100 })
+          .webp({ quality: 70 })
           .toFile(imageOutput, (err) => {
             if (err) {
               console.error(`Error processing ${image}`, err);
@@ -48,6 +48,6 @@ const heroDestination = "webp/heroes";
   const cards = glob.sync(`${cardSource}/**/*`);
   const heroes = glob.sync(`${heroSource}/**/*`);
   console.log(`Converting ${cards.length + heroes.length} images`);
-  // await convertImages(cards, cardDestination);
-  // await convertImages(heroes, heroDestination);
+  await convertImages(cards, cardDestination);
+  await convertImages(heroes, heroDestination);
 })();
