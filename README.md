@@ -10,6 +10,7 @@ Initial image setup from: https://github.com/flesh-cube/flesh-and-blood-cards/tr
 
 ### Spoilers card image conversion steps
 
+- Image files named by set identifier - ie `DYN001` or whatever the set abbreviation is
 - Add images to `src/dynasty`
 - `npm run convert:dynasty`
 
