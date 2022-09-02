@@ -62,9 +62,13 @@ const dynastyDestination = "webp/dynasty";
   } else {
     await deleteExistingImages();
     const cards = glob.sync(`${cardSource}/**/*`);
+    const dynastyCards = glob.sync(`${dynastySource}/**/*`);
     const heroes = glob.sync(`${heroSource}/**/*`);
-    console.log(`Converting ${cards.length + heroes.length} images`);
+    console.log(
+      `Converting ${cards.length + dynastyCards.length + heroes.length} images`
+    );
     await convertImages(cards, cardDestination);
+    await convertImages(dynastyCards, dynastyDestination);
     await convertImages(heroes, heroDestination);
   }
 })();
