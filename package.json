@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "convert": "node convert-to-webp.js"
+    "convert": "node convert-to-webp.js",
+    "convert:dynasty": "DYNASTY_ONLY=true node convert-to-webp.js",
+    "convert:heroes": "HEROES_ONLY=true node convert-to-webp.js"
   },
   "devDependencies": {
     "glob": "^8.0.3",
