@@ -8,6 +8,8 @@ const heroSource = "src/heroes";
 const heroDestination = "webp/heroes";
 const dynastySource = "src/dynasty";
 const dynastyDestination = "webp/dynasty";
+const specialSource = "src/special";
+const specialDestination = "webp/special";
 
 (async () => {
   const deleteExistingImages = async (directory) => {
@@ -26,7 +28,7 @@ const dynastyDestination = "webp/dynasty";
     }
   };
 
-  const convertImages = async (images, destination) => {
+  const convertImages = async (images, destination, quality = 70) => {
     for (const image of images) {
       const stat = await fs.promises.stat(image);
 
@@ -39,7 +41,7 @@ const dynastyDestination = "webp/dynasty";
         const imageOutput = `${destination}/${imageName}.webp`;
 
         sharp(imageBuffer)
-          .webp({ quality: 70 })
+          .webp({ quality })
           .toFile(imageOutput, (err) => {
             if (err) {
               console.error(`Error processing ${image}`, err);
@@ -59,6 +61,10 @@ const dynastyDestination = "webp/dynasty";
     const heroes = glob.sync(`${heroSource}/**/*`);
     console.log(`Converting ${heroes.length} images`);
     await convertImages(heroes, heroDestination);
+  } else if (process.env.SPECIAL_ONLY) {
+    await deleteExistingImages(specialDestination);
+    const special = glob.sync(`${specialSource}/**/*`);
+    await convertImages(special, specialDestination, 90);
   } else {
     await deleteExistingImages();
     const cards = glob.sync(`${cardSource}/**/*`);
