@@ -6,8 +6,8 @@ const cardSource = "src/cards";
 const cardDestination = "webp/cards";
 const heroSource = "src/heroes";
 const heroDestination = "webp/heroes";
-const dynastySource = "src/dynasty";
-const dynastyDestination = "webp/dynasty";
+const spoilersSource = "src/spoilers";
+const spoilersDestination = "webp/spoilers";
 const specialSource = "src/special";
 const specialDestination = "webp/special";
 
@@ -51,11 +51,11 @@ const specialDestination = "webp/special";
     }
   };
 
-  if (process.env.DYNASTY_ONLY) {
-    await deleteExistingImages(dynastyDestination);
-    const dynastyCards = glob.sync(`${dynastySource}/**/*`);
-    console.log(`Converting ${dynastyCards.length} images`);
-    await convertImages(dynastyCards, dynastyDestination);
+  if (process.env.SPOILERS_ONLY) {
+    await deleteExistingImages(spoilersDestination);
+    const spoilerCards = glob.sync(`${spoilersSource}/**/*`);
+    console.log(`Converting ${spoilerCards.length} images`);
+    await convertImages(spoilerCards, spoilersDestination);
   } else if (process.env.HEROES_ONLY) {
     await deleteExistingImages(heroDestination);
     const heroes = glob.sync(`${heroSource}/**/*`);
@@ -68,13 +68,13 @@ const specialDestination = "webp/special";
   } else {
     await deleteExistingImages();
     const cards = glob.sync(`${cardSource}/**/*`);
-    const dynastyCards = glob.sync(`${dynastySource}/**/*`);
+    const spoilerCards = glob.sync(`${spoilersSource}/**/*`);
     const heroes = glob.sync(`${heroSource}/**/*`);
     console.log(
-      `Converting ${cards.length + dynastyCards.length + heroes.length} images`
+      `Converting ${cards.length + spoilerCards.length + heroes.length} images`
     );
     await convertImages(cards, cardDestination);
-    await convertImages(dynastyCards, dynastyDestination);
+    await convertImages(spoilerCards, spoilersDestination);
     await convertImages(heroes, heroDestination);
   }
 })();

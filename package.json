@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "convert": "node convert-to-webp.js",
-    "convert:dynasty": "DYNASTY_ONLY=true node convert-to-webp.js",
+    "convert:spoilers": "SPOILERS_ONLY=true node convert-to-webp.js",
     "convert:heroes": "HEROES_ONLY=true node convert-to-webp.js",
     "convert:special": "SPECIAL_ONLY=true node convert-to-webp.js"
   },
