@@ -1,6 +1,5 @@
 .DS_Store
 src/cards/*
-src/heroes/*
 # libwebp-1.2.4-mac-arm64/*
 
 # Logs
